@@ -1,3 +1,7 @@
+@font-face {
+  font-family: ubuntu;
+  src: url("../fonts/ubuntu.ttf");
+}
 body{
   background-color: #009966 !important;
   font-family: Ubuntu !important;
