@@ -1,0 +1,22 @@
+{
+  "name": "sistemanotas",
+  "homepage": "https://github.com/acampoe/sistemanotas",
+  "authors": [
+    "Andres Ochoa <xgarlics@gmail.com>"
+  ],
+  "description": "",
+  "main": "index.html",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.5"
+  }
+}
