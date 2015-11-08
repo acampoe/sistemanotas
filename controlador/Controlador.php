@@ -1,13 +1,13 @@
 <?php
 
-include 'Conexion.php';
+include 'conexion/Conexion.php';
 
 /**
  * Clase Controlador
  */
 class Controlador
 {
-  private $conexion;
+  public $conexion;
 
   function __construct()
   {

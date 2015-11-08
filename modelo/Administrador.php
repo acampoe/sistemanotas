@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Clase administrador
+ * Clase Administrador
  */
 class Administrador
 {

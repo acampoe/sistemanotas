@@ -1,14 +1,25 @@
 <?php
 
+include 'Controlador.php';
+
 /**
  *
  */
 class ControladorAdministrador extends Controlador
 {
-  
-  function __construct(argument)
+  public function obtenerTodos()
   {
-    # code...
+    return $this->conexion->query("SELECT * FROM Administrador");
+  }
+
+  public function insertar($id, $nombreCompleto, $correoElectronico, $contrasena)
+  {
+    $this->conexion->query("INSERT INTO Administrador VALUES ($id, \"$nombreCompleto\", \"$correoElectronico\", \"$contrasena\")");
+  }
+
+  public function obtenerPorIdentificacion($id)
+  {
+    return $this->conexion->query("SELECT * FROM Administrador WHERE id = $id");
   }
 }
 

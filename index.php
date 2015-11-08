@@ -1,8 +1,6 @@
 <?php
 
-include 'modelo/Administrador.php';
-include 'conexion/Conexion.php';
+include 'controlador/ControladorAdministrador.php';
 
-echo "aún sirve...";
 
 ?>
