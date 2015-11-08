@@ -12,3 +12,7 @@ body{
 #form{
   padding: 5em !important;
 }
+#aboutpanel{
+  background-color: rgb(94, 204, 55) !important;
+  border-color: rgb(74, 176, 37) !important;
+}
