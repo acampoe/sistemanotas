@@ -3,7 +3,7 @@
 include 'Controlador.php';
 
 /**
- *
+ * Clase ControladorAdministrador
  */
 class ControladorAdministrador extends Controlador
 {
