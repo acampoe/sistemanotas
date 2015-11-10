@@ -1,3 +1,14 @@
+<?php
+
+session_start();
+if ($_SESSION["login"]) {
+  if ($_SESSION["login"]["rol"] == "admin") {
+    header("Location: http://localhost:8000/paginas/admin.php");
+  }
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -26,7 +37,7 @@
         </div>
       </nav>
       <div class="container-fluid">
-        <form role="form-horizontal">
+        <form role="form-horizontal" action="../conexion/login_aux.php" method="post">
             <div>
               <div class="col-md-6 col-md-offset-3" id="cont">
                 <div class="panel panel-default">
@@ -37,22 +48,22 @@
                   </div>
                     <div class="panel-body">
                       <div class="form-group">
-                        <label for="user">Usuario:</label>
-                        <input type="text" class="form-control" id="email" placeholder="Ingresar Usuario">
+                        <label for="user">Identificación:</label>
+                        <input type="text" class="form-control" id="id" placeholder="Ingresar Identificación" name="id">
                       </div>
                       <div class="form-group">
                         <label for="pwd">Contraseña:</label>
-                        <input type="password" class="form-control" id="pwd" placeholder="Ingresar Contraseña">
+                        <input type="password" class="form-control" id="pwd" placeholder="Ingresar Contraseña" name="password">
                       </div>
                       <div class="form-group">
                         <label for="rol">Rol:</label>
-                        <select class="form-control" name="">
-                          <option>Estudiante</option>
-                          <option>Docente</option>
-                          <option>Administrador</option>
+                        <select class="form-control" name="rol">
+                          <option value="estudiante">Estudiante</option>
+                          <option value="docente">Docente</option>
+                          <option value="admin">Administrador</option>
                         </select>
                       </div>
-                        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-log-in"></span> Entrar</button>
+                      <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-log-in"></span> Entrar</button>
                     </div>
                 </div>
               </div>

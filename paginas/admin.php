@@ -1,3 +1,16 @@
+<?php
+
+session_start();
+if ($_SESSION["login"]) {
+  if ($_SESSION["login"]["rol"] != "admin") {
+    echo "Acceso denegado.";
+  }
+} else {
+  header("Location: http://localhost:8000/paginas/login.php");
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -29,11 +42,18 @@
           <ul class="nav navbar-nav navbar-right">
             <div class="dropdown">
               <button class="btn btn-default dropdown-toggle navbar-btn" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                <span class="glyphicon glyphicon-user"> Sideth</span>
+                <span class="glyphicon glyphicon-user"></span>
+                <?php
+                echo $_SESSION["login"]["nombreCompleto"];
+                ?>
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu">
-                <li><a href="login.html"><span class="glyphicon glyphicon-log-out"></span> Cerrar Sesion</a></li>
+                <li>
+                  <a href="../conexion/logout.php"><span class="glyphicon glyphicon-log-out"></span>
+                    Cerrar Sesión
+                  </a>
+                </li>
               </ul>
             </div>
           </ul>

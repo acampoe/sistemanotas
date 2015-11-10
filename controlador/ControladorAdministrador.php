@@ -19,7 +19,7 @@ class ControladorAdministrador extends Controlador
 
   public function obtenerPorIdentificacion($id)
   {
-    return $this->conexion->query("SELECT * FROM Administrador WHERE id = $id");
+    return $this->conexion->query("SELECT * FROM Administrador WHERE idAdministrador = $id");
   }
 }
 
