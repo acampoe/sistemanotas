@@ -6,7 +6,6 @@ $objeto = new ControladorAdministrador();
 $objeto->insertar($_POST["id"], $_POST["fullName"], $_POST["email"], $_POST["password"]);
 
 ?>
-
 <!DOCTYPE html>
 <html>
   <head>
