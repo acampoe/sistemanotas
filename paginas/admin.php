@@ -3,7 +3,7 @@
 session_start();
 if ($_SESSION["login"]) {
   if ($_SESSION["login"]["rol"] != "admin") {
-    echo "Acceso denegado.";
+    header("Location: http://localhost:8000/paginas/accessdenied.php");
   }
 } else {
   header("Location: http://localhost:8000/paginas/login.php");
