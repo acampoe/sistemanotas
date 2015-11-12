@@ -1,6 +1,6 @@
 <?php
 
-include 'Controlador.php';
+include_once 'Controlador.php';
 
 /**
  * Clase ControladorAdministrador

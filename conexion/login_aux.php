@@ -1,7 +1,7 @@
 <?php
 
-include '../controlador/ControladorAdministrador.php';
 include '../controlador/ControladorAlumno.php';
+include '../controlador/ControladorAdministrador.php';
 
 $id = $_POST["id"];
 $password = $_POST["password"];
@@ -38,7 +38,7 @@ if ($rol == "admin") {
 
     if ($alumn) {
       if ($alumn["idAlumno"] == $id && $alumn["contrasena"] == $password) {
-        echo "Inicio exitoso.";
+        //echo "Inicio exitoso.";
         session_start();
         $login = [
           "id" => $alumn["idAlumno"],
@@ -51,7 +51,7 @@ if ($rol == "admin") {
           "rol" => $rol
         ];
         $_SESSION["login"] = $login;
-        header("Location: http://localhost:8000/paginas/estudiante.php");
+        //header("Location: http://localhost:8000/paginas/estudiante.php");
       } else {
         echo "Contraseña incorrecta.";
       }
