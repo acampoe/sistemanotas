@@ -24,14 +24,14 @@ if ($_SESSION["login"]) {
       <nav class="navbar navbar-default">
         <div class="container">
           <div class="navbar-header">
-            <a href="../index.html" class="navbar-brand"><strong>Sistema Academico</strong></a>
+            <a href="../index.php" class="navbar-brand"><strong>Sistema Academico</strong></a>
           </div>
           <div>
             <ul class="nav navbar-nav">
               <li><a href="about.html">Acerca De</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li class="active"><a href="login.html"><span class="glyphicon glyphicon-log-in"> Ingresar</span></a></li>
+              <li class="active"><a href="login.php"><span class="glyphicon glyphicon-log-in"> Ingresar</span></a></li>
             </ul>
           </div>
         </div>

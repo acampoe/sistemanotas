@@ -1,14 +1,26 @@
 <?php
 
+include 'Controlador.php';
+
 /**
- *
+ * Clase ControladorAlumno
  */
 class ControladorAlumno extends Controlador
 {
 
-  function __construct(argument)
+  public function obtenerTodos()
   {
-    # code...
+    return $this->conexion->query("SELECT * FROM Alumno");
+  }
+
+  public function insertar($id, $apellidos, $nombres, $edad, $correoElectronico, $telefono, $celular, $contrasena)
+  {
+    $this->conexion->query("INSERT INTO Alumno VALUES ($id, \"$apellidos\", \"$nombres\", \"$edad\", \"$correoElectronico\", \"$telefono\", \"$celular\", \"$contrasena\")");
+  }
+
+  public function obtenerPorIdentificacion($id)
+  {
+    return $this->conexion->query("SELECT * FROM Alumno WHERE idAlumno = $id");
   }
 }
 

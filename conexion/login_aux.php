@@ -1,6 +1,7 @@
 <?php
 
 include '../controlador/ControladorAdministrador.php';
+include '../controlador/ControladorAlumno.php';
 
 $id = $_POST["id"];
 $password = $_POST["password"];
@@ -30,7 +31,36 @@ if ($rol == "admin") {
     echo "El administrador no existe.";
   }
 } else {
-  echo "No disponible...";
+  if ($rol == "estudiante") {
+    $conEstu = new ControladorAlumno();
+    $estud = $conEstu->obtenerPorIdentificacion($id);
+    $alumn = $estud->fetch_assoc();
+
+    if ($alumn) {
+      if ($alumn["idAlumno"] == $id && $alumn["contrasena"] == $password) {
+        echo "Inicio exitoso.";
+        session_start();
+        $login = [
+          "id" => $alumn["idAlumno"],
+          "apellidos" => $alumn["apellidos"],
+          "nombres" => $alumn["nombres"],
+          "edad" => $alumn["edad"],
+          "email" => $alumn["correoElectronico"],
+          "telefono" => $alumn["telefono"],
+          "celular" => $alumn["celular"],
+          "rol" => $rol
+        ];
+        $_SESSION["login"] = $login;
+        header("Location: http://localhost:8000/paginas/estudiante.php");
+      } else {
+        echo "Contraseña incorrecta.";
+      }
+    } else {
+      echo "El estudiante no existe.";
+    }
+  } else {
+    echo "No disponible...";
+  }
 }
 
 ?>

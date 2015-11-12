@@ -1,11 +1,3 @@
-<?php
-
-include 'controlador/ControladorAdministrador.php';
-
-$objeto = new ControladorAdministrador();
-$objeto->insertar($_POST["id"], $_POST["fullName"], $_POST["email"], $_POST["password"]);
-
-?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -21,14 +13,14 @@ $objeto->insertar($_POST["id"], $_POST["fullName"], $_POST["email"], $_POST["pas
       <nav class="navbar navbar-default">
         <div class="container">
           <div class="navbar-header">
-            <a href="index.html" class="navbar-brand"><strong>Sistema Academico</strong></a>
+            <a href="index.php" class="navbar-brand"><strong>Sistema Academico</strong></a>
           </div>
           <div>
             <ul class="nav navbar-nav">
               <li><a href="paginas/about.html">Acerca De</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="paginas/login.html"><span class="glyphicon glyphicon-log-in"> Ingresar</span></a></li>
+              <li><a href="paginas/login.php"><span class="glyphicon glyphicon-log-in"> Ingresar</span></a></li>
             </ul>
           </div>
         </div>
