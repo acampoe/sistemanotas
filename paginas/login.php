@@ -4,6 +4,14 @@ session_start();
 if ($_SESSION["login"]) {
   if ($_SESSION["login"]["rol"] == "admin") {
     header("Location: http://localhost:8000/paginas/admin.php");
+  }else {
+    if ($_SESSION["login"]["rol"] == "estudiante") {
+      header("Location: http://localhost:8000/paginas/estudiante.php");
+    }else {
+      if ($_SESSION["login"]["rol"] == "docente") {
+        header("Location: http://localhost:8000/paginas/docente.php");
+      }
+    }
   }
 }
 

@@ -68,34 +68,29 @@ if ($_SESSION["login"]) {
             <h4 class="modal-title"><strong>Registro de Estudiante</strong></h4>
           </div>
           <div class="modal-body">
-            <table text-align="left">
-                <tr>
-                  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Id:</td>
-                  <td><input type="number" name="idalumno" value=""></td>
-                  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Edad:</td>
-                  <td><input type="number" name="edadalumno" value=""></td>
-                </tr>
-                <tr>
-                  <td><br>Nombres:</td>
-                  <td><br><input type="text" name="nombrenombres" value=""></td>
-                  <td><br>&nbsp;&nbsp;&nbsp;&nbsp;Telefono:</td>
-                  <td><br><input type="number" name="telefonoalumno" value=""></td>
-                </tr>
-                <tr>
-                  <td><br>Apellidos:</td>
-                  <td><br><input type="text" name="apellidoalumno" value=""></td>
-                  <td><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Celular:</td>
-                  <td><br><input type="number" name="celularalumno" value=""></td>
-                </tr>
-                <tr>
-                  <td><br>Contraseña:</td>
-                  <td><br><input type="password" name="contrasenaalumno" value=""></td>
-                  <td><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Correo:</td>
-                  <td><br><input type="email" name="correoalumno" value=""></td>
-              </table>
+            <form class="form" action="registro_alumno.php">
+              <div class="form-group">
+                <label for="id" class="control-label">Id: </label>
+                <input type="number" name="id" value="" class="form-control">
+                <label for="edad" class="control-label">Edad: </label>
+                <input type="number" name="edad" value="" class="form-control">
+                <label for="nombre" class="control-label">Nombres: </label>
+                <input type="text" name="nombre" value="" class="form-control">
+                <label for="telefono" class="control-label">Telefono: </label>
+                <input type="number" name="telefono" value="" class="form-control">
+                <label for="apellido" class="control-label">Apellidos: </label>
+                <input type="text" name="apellido" value="" class="form-control">
+                <label for="celular" class="control-label">Celular: </label>
+                <input type="number" name="celular" value="" class="form-control">
+                <label for="contrasena" class="control-label">Nueva Contraseña: </label>
+                <input type="password" name="contrasena" value="" class="form-control">
+                <label for="email" class="control-label">Correo Electronico: </label>
+                <input type="email" name="email" value="" class="form-control"> <br>
+                <input type="submit" name="enviar" value="Registrar" class="btn btn-primary">
+              </div>
+            </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Crear</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Atras</button>
           </div>
         </div>
@@ -109,32 +104,19 @@ if ($_SESSION["login"]) {
             <h4 class="modal-title"><strong>Registro de Docente</strong></h4>
           </div>
           <div class="modal-body">
-            <table>
-              <tr>
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Id:</td>
-                <td> <input type="number"></td>
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Edad:</td>
-                <td><input type="number" name="edad"></td>
-              </tr>
-              <tr>
-
-              </tr>
-              <tr>
-                <td><br>Nombres:</td>
-                <td><br><input type="text" name="nombreprofesor"></td>
-                <td><br>&nbsp;&nbsp;Contraseña: </td>
-                <td><br><input type="password" name="contrasenaprofesor"></td>
-              </tr>
-              <tr>
-                <td><br>Apellidos:</td>
-                <td><br><input type="text" name="nombreprofesor"></td>
-                <td><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Correo:</td>
-                <td><br><input type="email" name="correoprofesor"></td>
-              </tr>
-            </table>
+            <form role="form-horizontal" action="registro_docente.php" method="post">
+                <div class="form-group">
+                  <label for="id" class="control-label">Identificacion: </label> <input type="number" name="id" class="form-control"> <br>
+                  <label for="apellido" class="control-label">Apellidos: </label> <input type="text" name="apellido" class="form-control">
+                  <label for="nombre" class="control-label">Nombres: </label> <input type="text" name="nombre" class="form-control"> <br>
+                  <label for="edad" class="control-label">Edad: </label> <input type="number" name="edad" class="form-control">
+                  <label for="email" class="control-label">Correo Electronico: </label> <input type="email" name="email" class="form-control"> <br>
+                  <label for="contrasena" class="control-label">Nueva Contraseña: </label> <input type="text" name="contrasena" class="form-control"> <br>
+                  <input type="submit" name="enviar" class="btn btn-primary" Registrar value="Registrar">
+                </div>
+            </form>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Crear</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Atras</button>
           </div>
         </div>
