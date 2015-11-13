@@ -20,10 +20,10 @@
     <div class="container text-center">
         <div class="panel panel-danger">
           <div class="panel panel-heading">
-            <h2 class="text-center">IMPOSIBlE CONTINUAR</h2>
+            <h2 class="text-center">IMPOSIBLE CONTINUAR</h2>
           </div>
           <div class="panel panel-body">
-            <img src="../img/error.png" alt="ACeSS DENIED" height="300px" /> <br>
+            <img src="../img/error.png" alt="ACESS DENIED" height="300px" /> <br>
             <p>
               ¡ACCESO DENEGADO!
               <form class="form-horizontal" action="login.php" method="post">

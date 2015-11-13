@@ -83,7 +83,7 @@ if ($rol == "admin") {
           echo "Contraseña incorrecta.";
         }
       } else {
-        echo "El estudiante no existe.";
+        echo "El docente no existe.";
       }
     }else {
       echo "No Disponible...";

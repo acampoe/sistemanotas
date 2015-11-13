@@ -68,7 +68,7 @@ if ($_SESSION["login"]) {
             <h4 class="modal-title"><strong>Registro de Estudiante</strong></h4>
           </div>
           <div class="modal-body">
-            <form class="form" action="registro_alumno.php">
+            <form class="form" action="registro_alumno.php" method="post">
               <div class="form-group">
                 <label for="id" class="control-label">Id: </label>
                 <input type="number" name="id" value="" class="form-control">
@@ -76,10 +76,10 @@ if ($_SESSION["login"]) {
                 <input type="number" name="edad" value="" class="form-control">
                 <label for="nombre" class="control-label">Nombres: </label>
                 <input type="text" name="nombre" value="" class="form-control">
-                <label for="telefono" class="control-label">Telefono: </label>
-                <input type="number" name="telefono" value="" class="form-control">
                 <label for="apellido" class="control-label">Apellidos: </label>
                 <input type="text" name="apellido" value="" class="form-control">
+                <label for="telefono" class="control-label">Telefono: </label>
+                <input type="number" name="telefono" value="" class="form-control">
                 <label for="celular" class="control-label">Celular: </label>
                 <input type="number" name="celular" value="" class="form-control">
                 <label for="contrasena" class="control-label">Nueva Contraseña: </label>
