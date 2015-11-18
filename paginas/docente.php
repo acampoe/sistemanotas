@@ -19,7 +19,7 @@ if ($_SESSION["login"]) {
     <script src="../libs/jquery/dist/jquery.js" charset="utf-8"></script>
     <script src="../libs/bootstrap/dist/js/bootstrap.js" charset="utf-8"></script>
     <link rel="stylesheet" href="../libs/bootstrap/dist/css/bootstrap.css" charset="utf-8">
-    <title>Sistema Academico</title>
+    <title>Sistema Acad&eacute;mico</title>
   </head>
   <body>
     <nav class="navbar navbar-default">
@@ -28,7 +28,7 @@ if ($_SESSION["login"]) {
           <div class="dropdown">
             <button class="btn btn-default dropdown-toggle navbar-btn" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
               <span class="glyphicon glyphicon-th"></span>
-              <strong>Sistema Academico</strong>
+              <strong>Sistema Acad&eacute;mico</strong>
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
@@ -147,9 +147,14 @@ if ($_SESSION["login"]) {
       </div>
     </div>
     <div id="cont">
-      <div class="panel panel-danger">
+      <div class="panel panel-success">
         <div class="panel panel-heading">
-          <h3 class="text-center">Bienvenido Docente</h3>
+          <h3 class="text-center">
+            Bienvenido
+            <?php
+              echo $_SESSION["login"]["nombres"]." ".$_SESSION["login"]["apellidos"];
+            ?>
+          </h3>
         </div>
         <div class="panel panel-body">
           <p class="text-center">

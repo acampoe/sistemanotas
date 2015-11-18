@@ -6,7 +6,7 @@ body{
   background-color: #009966 !important;
   font-family: Ubuntu !important;
 }
-#cont{
+.content-main{
   padding: 2em !important;
 }
 #form{

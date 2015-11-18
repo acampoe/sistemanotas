@@ -15,7 +15,6 @@ if ($rol == "admin") {
 
   if ($admin) {
     if ($admin["idAdministrador"] == $id && $admin["contrasena"] == $password) {
-      echo "Inicio exitoso.";
       session_start();
       $login = [
         "id" => $admin["idAdministrador"],
@@ -39,7 +38,6 @@ if ($rol == "admin") {
 
     if ($alumn) {
       if ($alumn["idAlumno"] == $id && $alumn["contrasena"] == $password) {
-        echo "Inicio exitoso.";
         session_start();
         $login = [
           "id" => $alumn["idAlumno"],
@@ -67,7 +65,6 @@ if ($rol == "admin") {
 
       if ($doc) {
         if ($doc["idProfesor"] == $id && $doc["contrasena"] == $password) {
-          echo "Inicio exitoso.";
           session_start();
           $login = [
             "id" =>  $doc["idProfesor"],

@@ -4,6 +4,10 @@ session_start();
 if ($_SESSION["login"]) {
   if ($_SESSION["login"]["rol"] != "admin") {
     header("Location: http://localhost:8000/paginas/accessdenied.php");
+  } else {
+    include_once '../controlador/ControladorProfesor.php';
+    $conPro = new ControladorProfesor();
+    $profesores = $conPro->obtenerTodos();
   }
 } else {
   header("Location: http://localhost:8000/paginas/login.php");
@@ -20,21 +24,22 @@ if ($_SESSION["login"]) {
     <script src="../libs/jquery/dist/jquery.js" charset="utf-8"></script>
     <script src="../libs/bootstrap/dist/js/bootstrap.js" charset="utf-8"></script>
     <link rel="stylesheet" href="../libs/bootstrap/dist/css/bootstrap.css" charset="utf-8">
-    <title>Sistema Academico</title>
+    <title>Sistema Acad&eacute;mico</title>
   </head>
   <body>
     <nav class="navbar navbar-default">
       <div class="container">
         <div class="navbar-header">
           <div class="dropdown">
-            <button class="btn btn-default dropdown-toggle navbar-btn" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            <button class="btn btn-default dropdown-toggle navbar-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
               <span class="glyphicon glyphicon-th"></span>
-              <strong>Sistema Academico</strong>
+              <strong>Sistema Acad&eacute;mico</strong>
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
-              <li><a data-toggle="modal" data-target="#est"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-education"></span> Nuevo Estudiante</a></li>
-              <li><a data-toggle="modal" data-target="#doc"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-user"></span> Nuevo Docente</a></li>
+              <li><a data-toggle="modal" data-target="#estudiante"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-education"></span> Nuevo Estudiante</a></li>
+              <li><a data-toggle="modal" data-target="#docente"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-user"></span> Nuevo Docente</a></li>
+              <li><a data-toggle="modal" data-target="#asignatura"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-user"></span> Nueva Asignatura</a></li>
             </ul>
           </div>
         </div>
@@ -60,7 +65,7 @@ if ($_SESSION["login"]) {
         </div>
       </div>
     </nav>
-    <div id="est" class="modal fade" role="dialog">
+    <div id="estudiante" class="modal" role="dialog">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -96,7 +101,7 @@ if ($_SESSION["login"]) {
         </div>
       </div>
     </div>
-    <div id="doc" class="modal fade" role="dialog">
+    <div id="docente" class="modal" role="dialog">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
@@ -106,12 +111,18 @@ if ($_SESSION["login"]) {
           <div class="modal-body">
             <form role="form-horizontal" action="registro_docente.php" method="post">
                 <div class="form-group">
-                  <label for="id" class="control-label">Identificacion: </label> <input type="number" name="id" class="form-control"> <br>
-                  <label for="apellido" class="control-label">Apellidos: </label> <input type="text" name="apellido" class="form-control">
-                  <label for="nombre" class="control-label">Nombres: </label> <input type="text" name="nombre" class="form-control"> <br>
-                  <label for="edad" class="control-label">Edad: </label> <input type="number" name="edad" class="form-control">
-                  <label for="email" class="control-label">Correo Electronico: </label> <input type="email" name="email" class="form-control"> <br>
-                  <label for="contrasena" class="control-label">Nueva Contraseña: </label> <input type="text" name="contrasena" class="form-control"> <br>
+                  <label for="id" class="control-label">Identificacion: </label>
+                  <input type="number" name="id" class="form-control">
+                  <label for="apellido" class="control-label">Apellidos: </label>
+                  <input type="text" name="apellido" class="form-control">
+                  <label for="nombre" class="control-label">Nombres: </label>
+                  <input type="text" name="nombre" class="form-control">
+                  <label for="edad" class="control-label">Edad: </label>
+                  <input type="number" name="edad" class="form-control">
+                  <label for="email" class="control-label">Correo Electronico: </label>
+                  <input type="email" name="email" class="form-control">
+                  <label for="contrasena" class="control-label">Contraseña: </label>
+                  <input type="text" name="contrasena" class="form-control"> <br>
                   <input type="submit" name="enviar" class="btn btn-primary" Registrar value="Registrar">
                 </div>
             </form>
@@ -122,7 +133,42 @@ if ($_SESSION["login"]) {
         </div>
       </div>
     </div>
-    <div id="cont">
+    <div id="asignatura" class="modal" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title"><strong>Registro de Asignatura</strong></h4>
+          </div>
+          <div class="modal-body">
+            <form role="form-horizontal" action="registro_asignatura.php" method="post">
+                <div class="form-group">
+                  <label for="idAsignatura" class="control-label">Identificaci&oacute;n: </label>
+                  <input type="number" name="idAsignatura" class="form-control"><br>
+                  <label for="idProfesor" class="control-label">Profesor: </label>
+                  <select name="idProfesor" class="form-control">
+                    <?php
+                      for ($i=0; $i < $profesores->num_rows; $i++) {
+                        $profesor = $profesores->fetch_assoc();
+                        $nombreCompleto = $profesor["nombres"]. " ". $profesor["apellidos"];
+                        $id = $profesor["idProfesor"];
+                        echo "<option value=\"$id\">$nombreCompleto</option>";
+                      }
+                    ?>
+                  </select><br>
+                  <label for="nombre" class="control-label">Nombre: </label>
+                  <input type="text" name="nombre" class="form-control"><br>
+                  <input type="submit" name="enviar" class="btn btn-primary" value="Registrar">
+                </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Atras</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-main">
       <div class="panel panel-danger">
         <div class="panel panel-heading">
           <h3 class="text-center">Bienvenido Administrador</h3>
