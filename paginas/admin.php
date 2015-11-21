@@ -197,6 +197,47 @@ if ($_SESSION["login"]) {
         </div>
       </div>
     </div>
+
+    <div id="asignatura" class="modal" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title"><strong>Registro de Asignatura</strong></h4>
+          </div>
+          <div class="modal-body">
+            <form role="form-horizontal" action="registro_asignatura.php" method="post">
+                <div class="form-group">
+                  <label for="idAsignatura" class="control-label">Identificaci&oacute;n: </label>
+                  <input type="number" name="idAsignatura" class="form-control">
+                </div>
+                <div class="form-group">
+                  <label for="idProfesor" class="control-label">Profesor: </label>
+                  <select name="idProfesor" class="form-control">
+                    <?php
+                      for ($i=0; $i < $profesores->num_rows; $i++) {
+                        $profesor = $profesores->fetch_assoc();
+                        $nombreCompleto = $profesor["nombres"]. " ". $profesor["apellidos"];
+                        $id = $profesor["idProfesor"];
+                        echo "<option value=\"$id\">$nombreCompleto</option>";
+                      }
+                    ?>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="nombre" class="control-label">Nombre: </label>
+                  <input type="text" name="nombre" class="form-control">
+                </div>
+                <input type="submit" name="enviar" class="btn btn-primary" value="Registrar">
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Atras</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="content-main">
       <div class="panel panel-danger">
         <div class="panel panel-heading">

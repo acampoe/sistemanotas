@@ -22,6 +22,11 @@ class ControladorAsignatura extends Controlador
   {
     return $this->conexion->query("SELECT * FROM Asignatura WHERE idAsignatura = $id");
   }
+
+  public function obtenerPorIdentificacionProfesor($id)
+  {
+    return $this->conexion->query("SELECT * FROM Asignatura WHERE idProfesor = $id");
+  }
 }
 
 ?>

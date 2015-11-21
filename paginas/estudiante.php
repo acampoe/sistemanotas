@@ -4,6 +4,12 @@ session_start();
 if ($_SESSION["login"]) {
   if ($_SESSION["login"]["rol"] != "estudiante") {
     header("Location: http://localhost:8000/paginas/accessdenied.php");
+  } else {
+    include_once '../controlador/ControladorNota.php';
+    include_once '../controlador/ControladorAsignatura.php';
+    $conNota = new ControladorNota();
+    $notas = $conNota->obtenerPorIdentificacionAlumno($_SESSION["login"]["id"]);
+
   }
 } else {
   header("Location: http://localhost:8000/paginas/login.php");
@@ -64,9 +70,25 @@ if ($_SESSION["login"]) {
             <h4 class="modal-title"><strong>Notas Registradas</strong></h4>
           </div>
           <div class="modal-body">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
+            <table name="idProfesor" class="table-hover">
+              <tr>
+                <th>
+                  Materia
+                </th>
+                <th>
+                  Nota
+                </th>
+              </tr>
+              <?php
+                $conAsig = new ControladorAsignatura();
+                for ($i=0; $i < $notas->num_rows; $i++) {
+                  $nota = $notas->fetch_assoc();
+                  $nombre = $conAsig->obtenerPorIdentificacion($nota["idAsignatura"])->fetch_assoc()["nombre"];
+                  $calif = $nota["nota"];
+                  echo "<tr><td> $nombre </td><td> $calif</td></tr>";
+                }
+              ?>
+            </table>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

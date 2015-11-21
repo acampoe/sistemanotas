@@ -6,8 +6,12 @@ if ($_SESSION["login"]) {
     header("Location: http://localhost:8000/paginas/accessdenied.php");
   } else {
     include_once '../controlador/ControladorAsignatura.php';
+    include_once '../controlador/ControladorAlumno.php';
     $conAsig = new ControladorAsignatura();
-    $materias = $conAsig->obtenerTodos();
+    $conAlum = new ControladorAlumno();
+    $materias = $conAsig->obtenerPorIdentificacionProfesor($_SESSION["login"]["id"]);
+    $materias2 = $conAsig->obtenerPorIdentificacionProfesor($_SESSION["login"]["id"]);
+    $alumnos = $conAlum->obtenerTodos();
   }
 } else {
   header("Location: http://localhost:8000/paginas/login.php");
@@ -97,28 +101,50 @@ if ($_SESSION["login"]) {
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title"><strong>Registro de Notas</strong></h4>
+            <h4 class="modal-title"><strong>Registro de Nota:</strong></h4>
           </div>
           <div class="modal-body">
-            <div class="form-group">
-              <form class="form-horizontal" action="index.html" method="post">
-
+            <div class="container-fluid">
+              <form class="form-horizontal" action="registrar_nota.php" method="post">
+                <div class="form-group">
+                  <label for="">Seleccione Alumno:</label>
+                  <select name="idAlumno" class="form-control">
+                    <?php
+                      echo "<option value='default'>...</option>";
+                      for ($i=0; $i < $alumnos->num_rows; $i++) {
+                        $alumno = $alumnos->fetch_assoc();
+                        $nombres = $alumno["nombres"];
+                        $apellidos = $alumno["apellidos"];
+                        $nombreCompleto = $nombres.' '.$apellidos;
+                        $id = $alumno["idAlumno"];
+                        echo "<option value='$id'>$nombreCompleto</option>";
+                      }
+                    ?>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="">Seleccione Asignatura:</label>
+                  <select name="idAsignatura" class="form-control">
+                    <?php
+                      echo "<option value='default'>...</option>";
+                      for ($i=0; $i < $materias->num_rows; $i++) {
+                        $materia = $materias2->fetch_assoc();
+                        $nombre = $materia["nombre"];
+                        $id = $materia["idAsignatura"];
+                        echo "<option value='$id'>$nombre</option>";
+                      }
+                    ?>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="nota">Nota:</label>
+                  <input type="number" name="nota" min="0" max="5">
+                </div>
+                <input type="submit" value="Subir">
               </form>
-              <label for="">Seleccione Asignatura:</label>
-              <select name="idProfesor" class="form-control">
-                <?php
-                  for ($i=0; $i < $materias->num_rows; $i++) {
-                    $materia = $materias->fetch_assoc();
-                    $nombreCompleto = $materia["nombre"];
-                    $id = $materia["idAsignatura"];
-                    echo "<option value=\"$id\">$nombreCompleto</option>";
-                  }
-                ?>
-              </select>
             </div>
           </div>
           <div class="modal-footer">
-
             <button type="button" class="btn btn-default" data-dismiss="modal">Atras</button>
           </div>
         </div>
