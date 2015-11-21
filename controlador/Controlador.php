@@ -11,7 +11,7 @@ class Controlador
 
   function __construct()
   {
-    $this->conexion = Conexion::conectar("sisnotuser", "sisnotpass", "localhost", "sisnotdb");
+    $this->conexion = Conexion::conectar("sistemanotas", "sisnot", "localhost", "sisnotdb");
   }
 }
 

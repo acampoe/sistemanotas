@@ -4,6 +4,10 @@ session_start();
 if ($_SESSION["login"]) {
   if ($_SESSION["login"]["rol"] != "docente") {
     header("Location: http://localhost:8000/paginas/accessdenied.php");
+  } else {
+    include_once '../controlador/ControladorAsignatura.php';
+    $conAsig = new ControladorAsignatura();
+    $materias = $conAsig->obtenerTodos();
   }
 } else {
   header("Location: http://localhost:8000/paginas/login.php");
@@ -33,7 +37,6 @@ if ($_SESSION["login"]) {
             </button>
             <ul class="dropdown-menu">
               <li><a data-toggle="modal" data-target="#cursos"><span class="glyphicon glyphicon-education"></span> Mis Cursos</a></li>
-              <li><a data-toggle="modal" data-target="#create"><span class="glyphicon glyphicon-plus"></span> Crear Curso</a></li>
               <li><a data-toggle="modal" data-target="#notas"><span class="glyphicon glyphicon-copy"></span> Subir Notas</a></li>
             </ul>
           </div>
@@ -64,59 +67,26 @@ if ($_SESSION["login"]) {
             <h4 class="modal-title"><strong>Cursos Activos</strong></h4>
           </div>
           <div class="modal-body">
-            <table  class="table table-hover">
+            <table name="idProfesor" class="table-hover">
               <tr>
-                <th>Código</th>
-                <th>Grupo</th>
-                <th>Asignatura</th>
+                <th>
+                  ID
+                </th>
+                <th>
+                  Nombre
+                </th>
               </tr>
-              <tr>
-                <td>00</td>
-                <td>AD2</td>
-                <td>Programacion IV</td>
-              </tr>
-              <tr>
-                <td>11</td>
-                <td>GDL</td>
-                <td>Estructura De Datos</td>
-              </tr>
-              <tr>
-                <td>22</td>
-                <td>ML1</td>
-                <td>Paradigmas</td>
-              </tr>
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
+              <?php
+                for ($i=0; $i < $materias->num_rows; $i++) {
+                  $materia = $materias->fetch_assoc();
+                  $nombreCompleto = $materia["nombre"];
+                  $id = $materia["idAsignatura"];
+                  echo "<tr><td> $id </td><td> $nombreCompleto</td></tr>";
+                }
+              ?>
             </table>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Atras</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div id="create" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title"><strong>Registro de Asignaturas</strong></h4>
-          </div>
-          <div class="modal-body">
-            <label for="idasignatura">Id Asignatura:</label>
-            <input type="text" name="idasignatura" class="form-control" placeholder="Ingresar Id de Asignatura"><br>
-            <label for="grupoasignatura">Grupo Asignatura:</label>
-            <input type="text" name="grupoasignatura" class="form-control" placeholder="Ingresar Grupo de Asignatura"><br>
-            <label for="idprofesor">Id Profesor:</label>
-            <input type="text" name="idprofesor" class="form-control" placeholder="Ingresar Id de Profesor"><br>
-            <label for="nombreasignatura">Nombre de Asignatura:</label>
-            <input type="text" name="nombreasignatura" class="form-control" placeholder="Ingresar Nombre de Asignatura">
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Crear</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Atras</button>
           </div>
         </div>
@@ -131,16 +101,24 @@ if ($_SESSION["login"]) {
           </div>
           <div class="modal-body">
             <div class="form-group">
+              <form class="form-horizontal" action="index.html" method="post">
+
+              </form>
               <label for="">Seleccione Asignatura:</label>
-              <select class="form-control" name="">
-                <option>Estructura</option>
-                <option>Programacion</option>
-                <option>Paradigmas</option>
-              </select><br>
+              <select name="idProfesor" class="form-control">
+                <?php
+                  for ($i=0; $i < $materias->num_rows; $i++) {
+                    $materia = $materias->fetch_assoc();
+                    $nombreCompleto = $materia["nombre"];
+                    $id = $materia["idAsignatura"];
+                    echo "<option value=\"$id\">$nombreCompleto</option>";
+                  }
+                ?>
+              </select>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" name="button"><a>Acetar</a></button>
+
             <button type="button" class="btn btn-default" data-dismiss="modal">Atras</button>
           </div>
         </div>
